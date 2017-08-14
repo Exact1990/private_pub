@@ -41,6 +41,7 @@ module PrivatePub
 
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = url.scheme == "https"
+      http.read_timeout = config[:timeout_on_publish] || 60
       http.start {|h| h.request(form)}
     end
 
